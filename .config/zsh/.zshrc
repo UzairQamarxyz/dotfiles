@@ -31,6 +31,7 @@ alias dbf="dotbare fadd -f"
 alias dbd="dotbare fadd -d"
 alias dbm="dotbare commit -m"
 alias dbom="dotbare push -u origin master"
+alias dbs="dotbare status"
 
 #   Directory Shortcuts
 alias cm="cd ~/Music/"
