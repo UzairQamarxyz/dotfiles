@@ -1,0 +1,12 @@
+#!/bin/sh
+while read file
+do
+        case "$1" in
+        "C-r")
+                convert -rotate 90 "$file" "$file" ;;
+        "C-c")
+                echo -n "$file" | xclip -selection clipboard ;;
+        "C-w")
+                wal -i "$file" -o ~/.config/wal/done.sh && dwmc xrdb && cp "$file" ~/Pictures/wallpaper.png && convert -resize 1366x768^ -gravity center -extent 1366x768 ~/Pictures/wallpaper.png ~/.cache/i3lock/blur.png && convert -gaussian-blur 20x10 ~/.cache/i3lock/blur.png ~/.cache/i3lock/blur.png ;;
+        esac
+done
