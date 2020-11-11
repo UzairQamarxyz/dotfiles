@@ -1,0 +1,48 @@
+[global]
+# Make the width 300, have 21 right margin and 66 above
+geometry = "300x5-12+48"
+
+# Show multiple notifications in the same box
+separator_height = 0
+
+# Add vertical padding to the inside of the notification
+padding = 14
+
+# Add horizontal padding for when the text gets long enough
+horizontal_padding = 24
+frame_color = "{color2}"
+frame_width = 2
+
+# How long a user needs to be idle for sticky notifications
+idle_threshold = 120
+
+# Font and typography settings
+font = Noto\ Sans 8
+alignment = left
+word_wrap = yes
+
+# Format for how notifications will be displayed
+# Usage: `notify-send 'Title' 'Summary'`
+format = "<b>%s</b>: %b"
+
+# Allow some HTML tags like <i> and <u> in notifications
+markup = full
+
+# These are the keybindings used to control dunst notifications
+[shortcuts]
+close = ctrl+space
+close_all = ctrl+shift+space
+history = ctrl+grave
+
+# Set the background and foreground (text) color for all notifications
+[urgency_low]
+background = "{background}"
+foreground = "{foreground}"
+
+[urgency_normal]
+background = "{background}"
+foreground = "{foreground}"
+
+[urgency_critical]
+background = "{background}"
+foreground = "{foreground}"
