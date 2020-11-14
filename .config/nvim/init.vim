@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-abolish'
 call plug#end()
 
 "" General
@@ -93,6 +94,10 @@ nnoremap = :Neoformat<CR>
 """"""""""""""""""""
 "" Plugins Settings
 """"""""""""""""""""
+" Neoformat
+let g:neoformat_haskell_ormolu = { 'exe': 'ormolu', 'args': [] }
+let g:neoformat_enabled_haskell = ['ormolu']
+
 " Nerd commenter
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
