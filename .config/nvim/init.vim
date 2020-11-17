@@ -58,6 +58,14 @@ let g:airline_theme='wpgtk'
 hi Pmenu ctermbg=1
 hi Pmenu ctermfg=15
 
+" Error Highlight Colors
+hi CocWarningSign ctermbg=15
+hi CocWarningSign ctermfg =6
+
+" Error Highlight Colors
+hi CocErrorSign ctermbg=15
+hi CocErrorSign ctermfg =1
+
 " Info Colors
 hi CocInfoSign ctermbg=1
 hi CocInfoSign ctermfg=15
