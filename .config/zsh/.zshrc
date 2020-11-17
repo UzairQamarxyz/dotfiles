@@ -27,8 +27,7 @@ source $HOME/.cache/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-h
 #   Aliases
 alias wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
-alias dbf="dotbare fadd -f"
-alias dbd="dotbare fadd -d"
+alias dba="dotbare add -u"
 alias dbm="dotbare commit -m"
 alias dbom="dotbare push -u origin master"
 alias dbs="dotbare status"
