@@ -17,7 +17,7 @@ TRACK=$(cmus-remote -Q | grep -a '^tag title' | awk '{gsub("tag title ", "");pri
 
 i='';
 
-if [ ps -C cmus > /dev/null ] || [ "$TRACK" == "" ]; then
+if pgrep cmus > /dev/null && [ "$TRACK" == "" ]; then
     printf "%s%s%sN/A    \n" "$c9" "$i" "$fg"
 else
     printf "%s%s%s%s  \n" "$c9" "$i" "$fg" "${TRACK^^}"
