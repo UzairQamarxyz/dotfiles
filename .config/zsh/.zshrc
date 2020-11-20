@@ -29,7 +29,7 @@ alias wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias dba="dotbare add -u"
 alias dbm="dotbare commit -m"
-alias dbom="dotbare push -u origin master"
+alias dbom="dotbare push origin $(current_branch)"
 alias dbs="dotbare status"
 
 #   Directory Shortcuts
