@@ -3,7 +3,7 @@ export ZSH="$HOME/.cache/.oh-my-zsh"
 
 # Theme
 ZSH_THEME="typewritten"
-export TYPEWRITTEN_CURSOR="block"
+export TYPEWRITTEN_CURSOR="beam"
 
 
 # Prevent duplicate History
