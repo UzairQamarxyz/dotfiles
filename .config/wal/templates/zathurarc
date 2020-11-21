@@ -2,7 +2,7 @@
 
 set selection-clipboard clipboard
 
-set font		"Inconsolata 9.5"
+set font		"Iosevka Myosevka 9.5"
 set adjust-open		"width"
 set statusbar-basename	"true"
 set recolor		"true"
