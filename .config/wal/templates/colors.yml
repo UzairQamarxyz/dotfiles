@@ -21,6 +21,10 @@ font:
   size: 7.0
 
 colors:
+  cursor:
+    text: "{background}"
+    cursor: "{cursor}"
+
   normal:
     black:   "{color0}"
     red:     "{color1}"
