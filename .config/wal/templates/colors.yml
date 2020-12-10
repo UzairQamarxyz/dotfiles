@@ -21,6 +21,10 @@ font:
   size: 7.0
 
 colors:
+  primary:
+    background: "{background}"
+    foreground: "{foreground}"
+
   cursor:
     text: "{background}"
     cursor: "{cursor}"
@@ -51,7 +55,7 @@ selection:
 cursor:
   style: Beam 
 
-  vi_mode_style: Beam 
+  vi_mode_style: Block 
 
   unfocused_hollow: true
 
