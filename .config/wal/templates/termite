@@ -1,5 +1,5 @@
 [options]
-font = Iosevka Myosevka 10 
+font = Monoid Nerd Font 10 
 allow_bold = false
 cursor_shape = ibeam 
 mouse_autohide = false 

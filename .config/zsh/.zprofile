@@ -1,6 +1,3 @@
-# Location: /etc/zsh/
-ZDOTDIR=$HOME/.config/zsh
-
 # Default programs:
 export TERMINAL="termite"
 export BROWSER="brave"
@@ -12,16 +9,16 @@ export DOTBARE_PREVIEW="bat --theme=ansi-dark --color=always {}"
 
 # XDG_BASE_DIRECTORY
 
-#   XDG
+# XDG
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
-#   Neovim
+# Neovim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-#   Android/Java
+# Android/Java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export _JAVA_AWT_WM_NONREPARENTING=1
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -30,7 +27,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-#   Cleanup
+# Cleanup
 #XAUTHORIY
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 #ANDROID
@@ -67,3 +64,8 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 #XINIT
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+
+# RUN STARTX
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+	pgrep dwm || startx "$XDG_CONFIG_HOME/X11/xinitrc"
+fi

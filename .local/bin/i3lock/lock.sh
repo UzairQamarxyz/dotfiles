@@ -8,8 +8,8 @@
     --datestr="%A, %m %Y"   \
     --date-align 0	\
     --time-align 0	\
-    --date-font='Noto Sans'   \
-    --time-font='Noto Sans Medium'   \
+    --date-font='Barlow'   \
+    --time-font='Barlow Medium'   \
     --timesize=54   \
     --datesize=18  \
     --datecolor=#ffffffff	\
