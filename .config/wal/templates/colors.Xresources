@@ -39,6 +39,10 @@
 *.color66: {color0}
 *color66:  {color0}
 
+! sxiv colors
+Sxiv.background: {background}
+Sxiv.foreground: {foreground}
+
 ! dwm colors
 dwm.normfgcolor: {foreground}
 dwm.normbgcolor: {background}

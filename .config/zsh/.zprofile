@@ -1,6 +1,6 @@
 # Default programs:
 export TERMINAL="termite"
-export BROWSER="brave"
+export BROWSER="iridium-browser"
 export READER="zathura"
 
 # dotbare
@@ -26,6 +26,9 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Composer
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # Cleanup
 #XAUTHORIY

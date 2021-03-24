@@ -6,10 +6,10 @@ wifistatus="$(cat /sys/class/net/wlp3s0/operstate)"
 #wifiperc="$(grep "^\s*w" /proc/net/wireless | awk '{ print int($3 * 100 / 70)}')"
 
 if [ $ethstatus == "up" ]; then
-    printf "Ethernet    \n"
+    printf "Ethernet  "
 elif [ "$wifistatus" == "down" ]; then
-    printf "No Internet  \n"
+    printf "No Internet  "
 fi
 if [ $wifistatus == "up" ]; then
-    printf "Wifi  \n"
+    printf "Wifi  "
 fi

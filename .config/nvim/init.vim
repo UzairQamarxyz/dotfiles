@@ -5,12 +5,11 @@ let g:ale_disable_lsp = 1
 call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'tpope/vim-surround'
 Plug 'ap/vim-css-color'
-Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline'
 Plug 'deviantfero/wpgtk.vim'
-Plug 'lambdalisue/suda.vim'
 Plug 'alvan/vim-closetag'
 Plug 'sbdchd/neoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -18,6 +17,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 "" General
@@ -38,7 +38,6 @@ set autoindent	"" Auto-indent new lines
 "" set shiftwidth=4	"" Number of auto-indent spaces
 set smartindent	"" Enable smart-indent
 set smarttab	"" Enable smart-tabs
-set softtabstop=4	"" Number of spaces per Tab
 set clipboard=unnamedplus
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  "" Disable Auto Comment Insertion
 
@@ -79,8 +78,6 @@ hi CursorColumn ctermfg=15
 """""""""""""""
 "" SHORTCUTS
 """""""""""""""
-" Save file as sudo on files that require root permission
-cnoremap w!! execute 'w suda://%'
 
 " Code Folding
 inoremap <F9> <C-O>za
@@ -96,10 +93,6 @@ vnoremap <F9> zf
 "" now it is possible to paste many times over selected text
 xnoremap <expr> p 'pgv"'.v:register.'y`>'
 xnoremap <expr> P 'Pgv"'.v:register.'y`>'
-
-"" Auto Complete Tags
-" Enter <// then Space to automatically close the tag
-" :iabbrev <// </<C-X><C-O>
 
 " Replace all is aliased to S.
 nnoremap S :%s///g<Left><Left><Left>
@@ -121,14 +114,56 @@ nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 "" Neoformat
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
+
 " let g:neoformat_verbose = 1
 nnoremap = :Neoformat<CR>
+
+" Better indent support for PHP by making it possible to indent HTML sections
+" as well.
+if exists("b:did_indent")
+  finish
+endif
+" This script pulls in the default indent/php.vim with the :runtime command
+" which could re-run this script recursively unless we catch that:
+if exists('s:doing_indent_inits')
+  finish
+endif
+let s:doing_indent_inits = 1
+runtime! indent/html.vim
+unlet b:did_indent
+runtime! indent/php.vim
+unlet s:doing_indent_inits
+function! GetPhpHtmlIndent(lnum)
+  if exists('*HtmlIndent')
+    let html_ind = HtmlIndent()
+  else
+    let html_ind = HtmlIndentGet(a:lnum)
+  endif
+  let php_ind = GetPhpIndent()
+  " priority one for php indent script
+  if php_ind > -1
+    return php_ind
+  endif
+  if html_ind > -1
+    if getline(a:lnum) =~ "^<?" && (0< searchpair('<?', '', '?>', 'nWb')
+          \ || 0 < searchpair('<?', '', '?>', 'nW'))
+      return -1
+    endif
+    return html_ind
+  endif
+  return -1
+endfunction
+setlocal indentexpr=GetPhpHtmlIndent(v:lnum)
+setlocal indentkeys+=<>>
 
 "" CoC
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
@@ -191,90 +226,37 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-" Note coc#float#scroll works on neovim >= 0.4.0 or vim >= 8.2.0750
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-
-" NeoVim-only mapping for visual mode scroll
-" Useful on signatureHelp after jump placeholder of snippet expansion
-if has('nvim')
-  vnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#nvim_scroll(1, 1) : "\<C-f>"
-  vnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#nvim_scroll(0, 1) : "\<C-b>"
-endif
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" PHP Formatting
+command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+map <c-s> <esc>:w<cr>:Silent php-cs-fixer fix %:p --level=symfony<cr>
 
 """"""""""""""""""""
 "" Plugins Settings
 """"""""""""""""""""
 " Neoformat
+" Enable alignment
+let g:neoformat_basic_format_align = 1
 
-" Nerd commenter
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
 
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
+" let g:neoformat_verbose = 1 " only affects the verbosity of Neoformat
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+
 " vim-closetag
 " filenames like *.xml, *.html, *.xhtml, ...
 " These are the file extensions where this plugin is enabled.
 "
-let g:closetag_filenames = '*.vue, *.html,*.xhtml,*.phtml,*.js,*.php'
+let g:closetag_filenames = '*.vue, *.html,*.xhtml,*.phtml,*.js,*.blade.php'
 
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml'
-
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 
 " integer value [0|1]
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
@@ -324,16 +306,6 @@ else
   set signcolumn=yes
 endif
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -352,7 +324,13 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 "" ALE
 let g:ale_sign_column_always = 1
-let g:ale_fixers = { 'javascript': ['eslint'],'vue':['eslint'] } 
+let g:ale_fixers = {
+  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \'javascript': ['eslint'],
+  \ 'vue':['eslint']
+  \ }
 let g:ale_linters = { 'javascript': ['eslint'],'vue':['eslint'] }
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_save = 1
+
+let g:ale_php_phpcs_executable='./vendor/bin/phpcs'
+let g:ale_php_php_cs_fixer_executable='./vendor/bin/php-cs-fixer'
+let g:ale_fixers = {'php': ['php-cs-fixer']}
