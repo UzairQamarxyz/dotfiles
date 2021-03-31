@@ -104,8 +104,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 "" Resizing
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <C-Left> :vertical resize -5<cr>
+nnoremap <C-Down> :resize +5<cr>
+nnoremap <C-Up> :resize -5<cr>
+nnoremap <C-Right> :vertical resize +5<cr>
 
 "" Vim Tabs
 " nnoremap <C-Left> :tabprevious<CR>
