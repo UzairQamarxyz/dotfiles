@@ -17,7 +17,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'airblade/vim-rooter'
 call plug#end()
 
 "" General
@@ -79,6 +80,9 @@ hi CursorColumn ctermfg=15
 "" SHORTCUTS
 """""""""""""""
 
+" FZF
+nnoremap <C-p> :execute 'Files'<CR>
+
 " Code Folding
 inoremap <F9> <C-O>za
 nnoremap <F9> za
@@ -136,8 +140,6 @@ if exists('s:doing_indent_inits')
   finish
 endif
 let s:doing_indent_inits = 1
-runtime! indent/html.vim
-unlet b:did_indent
 runtime! indent/php.vim
 unlet s:doing_indent_inits
 function! GetPhpHtmlIndent(lnum)
@@ -164,8 +166,6 @@ setlocal indentexpr=GetPhpHtmlIndent(v:lnum)
 setlocal indentkeys+=<>>
 
 "" CoC
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
@@ -204,15 +204,6 @@ endif
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -227,10 +218,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
-
-" PHP Formatting
-command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
-map <c-s> <esc>:w<cr>:Silent php-cs-fixer fix %:p --level=symfony<cr>
 
 """"""""""""""""""""
 "" Plugins Settings
