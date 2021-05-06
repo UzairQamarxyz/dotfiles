@@ -7,18 +7,15 @@ window:
 
 font:
   normal:
-    family: Monoid Nerd Font 
-    style: Regular
+    family: Iosevka Custom 
 
   bold:
-    family: Monoid Nerd Font 
-    style: Regular
+    family: Iosevka Custom 
 
   bold_italic:
-    family: Monoid Nerd Font 
-    style: Regular
+    family: Iosevka Custom 
 
-  size: 7.0
+  size: 10.0
 
 colors:
   primary:

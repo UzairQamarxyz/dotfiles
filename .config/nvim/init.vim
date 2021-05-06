@@ -21,6 +21,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
 call plug#end()
 
+set guifont=Monoid\ Nerd\ Font:h12
+
 "" General
 set number	"" Show line numbers
 set relativenumber  "" Show relative number lines
