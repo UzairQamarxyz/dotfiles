@@ -44,6 +44,10 @@ set smarttab	"" Enable smart-tabs
 set clipboard=unnamedplus
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  "" Disable Auto Comment Insertion
 
+"" for moving up and down a wrapped line
+nnoremap j gj
+nnoremap k gk
+
 "" Advanced
 set ruler	"" Show row and column ruler information
 set undolevels=1000	"" Number of undo levels
@@ -59,6 +63,12 @@ let g:airline_theme='wpgtk'
 
 "" coc fix
 " Floating Menu Colors
+hi CocFloating ctermbg=1
+hi CocFloating ctermfg=15
+
+hi NormalFloat ctermbg=1
+hi NormalFloat ctermfg=15
+
 hi Pmenu ctermbg=1
 hi Pmenu ctermfg=15
 
@@ -236,7 +246,14 @@ let g:neoformat_basic_format_trim = 1
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " vim-closetag
 " filenames like *.xml, *.html, *.xhtml, ...
@@ -315,13 +332,23 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 "" ALE
 let g:ale_sign_column_always = 1
-let g:ale_fixers = {
-  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \'javascript': ['eslint'],
-  \ 'vue':['eslint']
-  \ }
-let g:ale_linters = { 'javascript': ['eslint'],'vue':['eslint'] }
 
+" Javascript
+" Run both javascript and vue linters for vue files.
+let b:ale_linter_aliases = ['javascript', 'vue']
+" Select the eslint and vls linters.
+let b:ale_linters = ['eslint', 'vls']
+" Fix with prettier first then eslint
+
+" PHP
 let g:ale_php_phpcs_executable='./vendor/bin/phpcs'
 let g:ale_php_php_cs_fixer_executable='./vendor/bin/php-cs-fixer'
-let g:ale_fixers = {'php': ['php-cs-fixer']}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'php': ['php-cs-fixer'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1

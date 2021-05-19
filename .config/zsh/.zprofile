@@ -25,6 +25,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 # Neovim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export UNCRUSTIFY_CONFIG="$XDG_CONFIG_HOME"/uncrustify/uncrustify.cfg
 
 # Composer
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
