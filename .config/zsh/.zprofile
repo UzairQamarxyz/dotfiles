@@ -9,6 +9,14 @@ export DOTBARE_PREVIEW="bat --theme=ansi-dark --color=always {}"
 
 # XDG_BASE_DIRECTORY
 
+# XDG
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+#EMACS
+export DOOMDIR="$XDG_CONFIG_HOME"/doom
+
 #ANDROID
 export _JAVA_AWT_WM_NONREPARENTING=1
 export ANDROID_HOME=/opt/android-sdk
@@ -17,10 +25,6 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-# XDG
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
 
 # Neovim
 export VISUAL=nvim
