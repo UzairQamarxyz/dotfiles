@@ -4,10 +4,10 @@ let g:ale_disable_lsp = 1
 call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'tpope/vim-surround'
 Plug 'ap/vim-css-color'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline'
 Plug 'deviantfero/wpgtk.vim'
-Plug 'rstacruz/vim-closer'
 Plug 'andymass/vim-matchup'
 Plug 'sbdchd/neoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -18,10 +18,6 @@ Plug 'w0rp/ale'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
 Plug 'glepnir/dashboard-nvim'
-Plug 'folke/which-key.nvim'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'dylanaraps/wal.vim'
 call plug#end()

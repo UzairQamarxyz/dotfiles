@@ -1,5 +1,5 @@
 # Default programs:
-export TERMINAL="termite"
+export TERMINAL="alacritty"
 export BROWSER="iridium-browser"
 export READER="zathura"
 
