@@ -8,7 +8,7 @@
 
 # Source colors from pywal
 source "${HOME}/.cache/wal/colors.sh"
-c9="^c$color9^"
+c9="^c$color4^"
 fg="^c$foreground^"
 
 #ARTIST=$(cmus-remote -Q | grep -a '^tag artist' | awk '{gsub("tag artist ", "");print}')
@@ -18,7 +18,7 @@ TRACK=$(spotify-now -i "%artist - %title")
 i='  '
 
 if pgrep cmus >/dev/null && [ "$TRACK" == "" ]; then
-    printf "%s%s%sN/A    \n" "$c9" "$i" "$fg"
+    printf "^b$color5^%s%s%sN/A    \n" "$c9" "$i" "$fg"
 else
     printf "%s%s%s%s  \n" "$c9" "$i" "$fg" "${TRACK}"
 fi
