@@ -1,21 +1,21 @@
 window:
   padding:
-    x: 25
-    y: 25
+    x: 30
+    y: 30
 
-  dynamic_padding: true 
+  dynamic_padding: true
 
 font:
   normal:
-    family: Iosevka Custom 
+    family: Iosevka Custom
 
   bold:
-    family: Iosevka Custom 
+    family: Iosevka Custom
 
   bold_italic:
-    family: Iosevka Custom 
+    family: Iosevka Custom
 
-  size: 10.0
+  size: 14.0
 
 colors:
   primary:
@@ -50,11 +50,11 @@ selection:
   save_to_clipboard: false
 
 cursor:
-  style: Beam 
-
-  vi_mode_style: Block 
+  style: Beam
 
   unfocused_hollow: true
 
 live_config_reload: true
 
+env:
+  WINIT_X11_SCALE_FACTOR: "1.0"
