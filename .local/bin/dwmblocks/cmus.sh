@@ -1,24 +1,16 @@
 #!/bin/bash
 
-# A dwm_bar function that shows the current artist, track, position, duration, and status from cmus
-# Joe Standring <git@joestandring.com>
-# GNU GPLv3
+icon_color="^C4^"
+fg_color="^C15^"
 
-# Dependencies: cmus
-
-# Source colors from pywal
-source "${HOME}/.cache/wal/colors.sh"
-c9="^c$color4^"
-fg="^c$foreground^"
-
-#ARTIST=$(cmus-remote -Q | grep -a '^tag artist' | awk '{gsub("tag artist ", "");print}')
+ARTIST=$(cmus-remote -Q | grep -a '^tag artist' | awk '{gsub("tag artist ", "");print}')
 #STATUS=$(cmus-remote -Q | grep -a '^status' | awk '{gsub("status ", "");print}')
-TRACK=$(spotify-now -i "%artist - %title")
+TRACK=$(cmus-remote -Q | grep -a '^tag title' | awk '{gsub("tag title ", "");print}')
 
-i='  '
+i='ﱘ  '
 
 if pgrep cmus >/dev/null && [ "$TRACK" == "" ]; then
-    printf "^b$color5^%s%s%sN/A    \n" "$c9" "$i" "$fg"
+    echo -n "${icon_color}${i}${fg_color}N/A"
 else
-    printf "%s%s%s%s  \n" "$c9" "$i" "$fg" "${TRACK}"
+    echo -n "${icon_color}${i}${fg_color}${ARTIST} - ${TRACK}"
 fi

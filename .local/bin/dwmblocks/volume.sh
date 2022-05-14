@@ -1,16 +1,14 @@
 #!/bin/bash
 
-# Source colors from pywal
-source "${HOME}/.cache/wal/colors.sh"
-c9="^c$color4^"
-fg="^c$foreground^"
+icon_color="^C4^"
+fg_color="^C15^"
 
 status=$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)\].*/\1/')
 level=$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')
 
 if [ $status == 'off' ]; then
     i='婢  '
-    printf "%s%s%sMute  \n" "$c9" "$i" "$fg"
+    echo -n "${icon_color}${i}${fg_color}Mute"
 elif [ $status == 'on' ]; then
     if [ $level -le 33 ]; then
         i='奄  '
@@ -19,5 +17,5 @@ elif [ $status == 'on' ]; then
     elif [ $level -le 100 ]; then
         i='  '
     fi
-    printf "%s%s%s%s%% \n" "$c9" "$i" "$fg" "$level"
+    echo -n "${icon_color}${i}${fg_color}${level}%"
 fi

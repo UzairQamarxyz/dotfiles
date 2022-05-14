@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Source colors from pywal
-source "${HOME}/.cache/wal/colors.sh"
-c9="^c$color4^"
-fg="^c$foreground^"
+icon_color="^C4^"
+fg_color="^C15^"
 
 status="$(cat /sys/class/power_supply/AC/online)"
 battery="$(cat /sys/class/power_supply/BAT0/capacity)"
@@ -24,4 +22,4 @@ case $status in
     *) i='  ' ;;
     esac ;;
 esac
-printf  "%s%s%s%s%% \n" "$c9" "$i" "$fg" "$battery"
+echo -n "${icon_color}${i}${fg_color}${battery}%"

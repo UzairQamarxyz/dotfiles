@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Source colors from pywal
-source "${HOME}/.cache/wal/colors.sh"
-c9="^c$color4^"
-fg="^c$foreground^"
+icon_color="^C4^"
+fg_color="^C15^"
+
 i='  '
 
 time="$(date "+%I:%M%p")"
-printf "%s%s%s%s  \n" "$c9" "$i" "$fg" "$time"
+echo -n "${icon_color}${i}${fg_color}${time}  "
