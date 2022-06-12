@@ -17,9 +17,12 @@ Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
-Plug 'glepnir/dashboard-nvim'
 Plug 'morhetz/gruvbox'
 Plug 'dylanaraps/wal.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'lambdalisue/suda.vim'
+Plug 'evanleck/vim-svelte'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 "" General
@@ -57,7 +60,7 @@ set splitbelow
 set splitright
 
 "" wpgtk
-colorscheme wal
+colorscheme wpgtkAlt
 let g:airline_theme='wal'
 
 """""""""""""""
@@ -84,6 +87,9 @@ xnoremap <expr> P 'Pgv"'.v:register.'y`>'
 " Replace all is aliased to S.
 nnoremap S :%s///g<Left><Left><Left>
 
+" Save file as sudo on files that require root permission
+cnoremap w!! SudaWrite
+
 "" Vim Splits
 " Navigation
 nnoremap <C-J> <C-W><C-J>
@@ -103,15 +109,11 @@ nnoremap <C-Right> :vertical resize +5<cr>
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
-" let g:neoformat_verbose = 1
 nnoremap = :Neoformat<CR>
 
 """"""""""""""""""""
 "" Plugin Settings
 """"""""""""""""""""
-" Dashboard
-let g:dashboard_default_executive ='fzf'
-
 "" Neoformat
 " Enable alignment
 let g:neoformat_basic_format_align = 1
@@ -242,7 +244,6 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -348,9 +349,3 @@ let g:ale_fixers = {
 
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
-
-"" Telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
