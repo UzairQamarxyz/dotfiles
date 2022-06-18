@@ -1,24 +1,24 @@
-#!/usr/bin/bash
+#!/bin/sh
 
 # A dmenu wrapper script for system functions.
-
-# Source colors from pywal
-source "${HOME}/.cache/wal/colors.sh"
-
-# For non-systemd init systems.
+export WM="dwm"
 case "$(readlink -f /sbin/init)" in
-	*runit*) hib="sudo -A zzz" ;;
-	*openrc*) reb="sudo -A openrc-shutdown -r"; shut="sudo -A openrc-shutdown -p" ;;
+	*systemd*) ctl='systemctl' ;;
+	*) ctl='loginctl' ;;
 esac
 
-cmds="\
-Lock		$HOME/.local/bin/i3lock/lock.sh
-Leave dwm	kill -TERM $(pidof -s dwm)
-Renew dwm	kill -HUP $(pidof -s dwm)
-Hibernate	${hib:-sudo -A systemctl suspend-then-hibernate}
-Reboot	        ${reb:-sudo -A reboot}
-Shutdown	${shut:-sudo -A shutdown -h now}"
+wmpid(){ # This function is needed if there are multiple instances of the window manager.
+	tree="$(pstree -ps $$)"
+	tree="${tree#*$WM(}"
+	echo "${tree%%)*}"
+}
 
-choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -i -nb $background -nf $foreground -sb $color9 -sf $foreground)" || exit 1
-
-`echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`
+case "$(printf " lock\n leave $WM\nﰇ reboot\n shutdown\n鈴 sleep\n📺 display off" | dmenu -i -p 'Action: ')" in
+	' lock') /home/uzair/.local/bin/i3lock/lock.sh ;;
+	" leave $WM") kill -TERM "$(wmpid)" ;;
+	'鈴 sleep') slock $ctl suspend -i ;;
+	'ﰇ reboot') $ctl reboot -i ;;
+	'  shutdown') $ctl poweroff -i ;;
+	'📺 display off') xset dpms force off ;;
+	*) exit 1 ;;
+esac
