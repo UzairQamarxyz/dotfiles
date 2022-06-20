@@ -19,11 +19,11 @@ font:
 
 colors:
   primary:
-    background: "{background}"
-    foreground: "{foreground}"
+    background: "{color0}"
+    foreground: "{color15}"
 
   cursor:
-    text: "{background}"
+    text: "{color0}"
     cursor: "{cursor}"
 
   normal:

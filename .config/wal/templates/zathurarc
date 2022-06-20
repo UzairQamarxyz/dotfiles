@@ -2,7 +2,7 @@
 
 set selection-clipboard clipboard
 
-set font		"Monoid Nerd Font 9.5"
+set font		"InconsolataLGC Nerd Font 10"
 set adjust-open		"width"
 set statusbar-basename	"true"
 set recolor		"true"
