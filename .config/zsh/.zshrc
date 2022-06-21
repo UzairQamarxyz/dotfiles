@@ -1,14 +1,21 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+source /usr/share/zsh/share/antigen.zsh
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+    git
+    docker
+    terraform
+    fzf
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-completions
+    zsh-users/zsh-history-substring-search
+    reobin/typewritten@main
+EOBUNDLES
+
+# Tell antigen that you're done
+antigen apply
 
 # Theme
 ZSH_THEME="typewritten"
