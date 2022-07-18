@@ -46,7 +46,6 @@ bindkey '^[[C'    forward-char                  # right      move cursor one cha
 bindkey '^[[A'    up-line-or-beginning-search   # up         prev command in history
 bindkey '^[[B'    down-line-or-beginning-search # down       next command in history
 
-
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -80,9 +79,10 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 source $ZSH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZSH/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $ZSH/plugins/fzf/fzf.plugin.zsh
+source $ZSH/plugins/fzf/completion.zsh
+source $ZSH/plugins/fzf/key-bindings.zsh
 source $ZSH/plugins/aws/aws.plugin.zsh
 source $ZSH/plugins/docker/docker.plugin.zsh
 source $ZSH/plugins/docker-compose/docker-compose.plugin.zsh
