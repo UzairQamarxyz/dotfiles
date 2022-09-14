@@ -1,4 +1,4 @@
-export ZSH=~/.config/zsh
+export ZSH=$XDG_CONFIG_HOME/zsh
 
 autoload -U select-word-style
 select-word-style bash
@@ -78,7 +78,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-source $ZSH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZSH/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $ZSH/plugins/fzf/fzf.plugin.zsh
 source $ZSH/plugins/fzf/completion.zsh
@@ -89,12 +88,16 @@ source $ZSH/plugins/docker-compose/docker-compose.plugin.zsh
 source $ZSH/plugins/python/python.plugin.zsh
 source $ZSH/plugins/emacs/emacs.plugin.zsh
 source $ZSH/plugins/git/git.plugin.zsh
+source $ZSH/plugins/kubectl/kubectl.plugin.zsh
+source $ZSH/lib/git.zsh
 source $ZSH/plugins/terraform/terraform.plugin.zsh
 
 fpath=($ZSH/plugins/zsh-completions/src $fpath)
 fpath=($ZSH/plugins/terraform/ $fpath)
 fpath=($ZSH/plugins/docker-compose/ $fpath)
 
+zstyle ':completion:*' completer _expand_alias _complete _ignored
+zstyle ':completion:*' _ignored
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' list-colors
 zstyle ':completion:*' menu select
@@ -113,15 +116,24 @@ TYPEWRITTEN_CURSOR="beam"
 
 # History
 HISTFILE=~/.local/share/zsh/history
-HISTSIZE=5000
-SAVEHIST=5000
-setopt hist_ignore_all_dups
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
 # Aliases
 alias wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias doom="~/.emacs.d/bin/doom"
-#alias emacs="/usr/bin/emacsclient -c"
 alias bat="bat --theme=ansi --color=always"
 alias sudo='sudo -v; sudo '
 
@@ -132,3 +144,11 @@ alias ll="exa --icons -l"
 alias lsa="exa --icons -a"
 alias lsg="exa --icons --git-ignore"
 alias lsd="exa --icons -D"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=($ZSH/plugins/zsh-syntax-highlighting/ $fpath)
+zle_highlight+=(paste:none)
