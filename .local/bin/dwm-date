@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 icon_color="^C4^"
 fg_color="^C15^"

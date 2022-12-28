@@ -16,7 +16,7 @@ wmpid(){ # This function is needed if there are multiple instances of the window
 case "$(printf " lock\n leave $WM\nﰇ reboot\n shutdown\n鈴 sleep\n📺 display off" | dmenu -i -p 'Action: ')" in
 	' lock') /home/uzair/.local/bin/i3lock/lock.sh ;;
 	" leave $WM") kill -TERM "$(wmpid)" ;;
-	'鈴 sleep') slock $ctl suspend -i ;;
+	'鈴 sleep') systemctl suspend ;;
 	'ﰇ reboot') $ctl reboot -i ;;
 	'  shutdown') $ctl poweroff -i ;;
 	'📺 display off') xset dpms force off ;;

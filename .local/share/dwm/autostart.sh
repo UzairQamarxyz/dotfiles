@@ -1,16 +1,21 @@
-#!/bin/bash
-#dunst &                                # dunst for notifications
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
-xset r rate 200 80 &                   # Speed xrate up
-unclutter &                            # Remove mouse when idle
-xss-lock ~/.local/bin/i3lock/lock.sh & # Run xss-lock
-dwmblocks &                            # Run the statusbar
-/usr/bin/emacs --daemon &              # Run the emacs server
-pulseaudio --start                     # Start pulseaudio
-numlockx on
+#!/bin/sh
+set -x
 
-/usr/lib/kdeconnectd &
+run() {
+	[ -z "$(pidof "$*")" ] && "$@" &
+}
+run /usr/lib/xfce4/notifyd/xfce4-notifyd
+run unclutter
+run dwmblocks
+run emacs --daemon
+run xfce4-power-manager
+run /usr/lib/kdeconnectd
+run /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+run picom -cb --shadow-exclude "x = 0 && y = 0 && override_redirect = true" --focus-exclude "x = 0 && y = 0 && override_redirect = true"
+
+xset r rate 200 80 &                        # Speed xrate up
+pulseaudio --start                          # Start pulseaudio
 setxkbmap -option caps:escape               # Set Capslock to Escape
 xgamma -rgamma 0.85 -ggamma 0.85 -bgamma 1  # Set gamma
 feh --bg-fill ~/Pictures/wallpaper.png      # Set wallpaper
-picom -cb --shadow-exclude "x = 0 && y = 0 && override_redirect = true" --focus-exclude "x = 0 && y = 0 && override_redirect = true" --experimental-backends
+numlockx on

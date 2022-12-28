@@ -2,5 +2,4 @@
 FILE_PATH="$1"
 feh --bg-fill "${FILE_PATH}" &&
 	cp "${FILE_PATH}" ~/Pictures/wallpaper.png &&
-	convert -resize 1920x1080^ -gravity center -extent 1920x1080 ~/Pictures/wallpaper.png ~/.cache/i3lock/blur.png &&
-	convert -gaussian-blur 20x10 ~/.cache/i3lock/blur.png ~/.cache/i3lock/blur.png
+	betterlockscreen -u "${FILE_PATH}"
