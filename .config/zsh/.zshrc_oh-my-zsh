@@ -93,11 +93,17 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
+    debian
+    golang
+    docker
+    docker-compose
 	kubectl
+    kubectx
 	terraform
 	aws
 	fzf
 	helm
+    web-search
 	zsh-syntax-highlighting
 	zsh-history-substring-search
 )
