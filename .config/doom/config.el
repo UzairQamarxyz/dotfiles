@@ -30,7 +30,7 @@
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 ;;
 ;; (setq doom-font (font-spec :family "Iosevka Custom" :size 18)
-(setq doom-font (font-spec :family "Iosevka Custom" :size 18)
+(setq doom-font (font-spec :family "IosevkaCustom Nerd Font" :size 18)
       doom-variable-pitch-font (font-spec :family "Cormorant" :size 20))
       ;; doom-variable-pitch-font (font-spec :family "Cormorant Infant" :size 20))
 

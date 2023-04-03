@@ -1,0 +1,49 @@
+# NF: --complete --makegroups --careful
+
+[buildPlans.iosevka-custom]
+family = "Iosevka Custom"
+serifs = "sans"
+spacing = "normal"
+
+  [buildPlans.iosevka-custom.variants]
+  inherits = "ss14"
+
+    [buildPlans.iosevka-custom.variants.design]
+    capital-i = "short-serifed"
+    capital-j = "serifless"
+    capital-w = "straight-flat-top"
+    f = "serifless"
+    g = "single-storey-serifless"
+    i = "flat-tailed"
+    j = "serifless"
+    k = "symmetric-connected-serifless"
+    l = "flat-tailed"
+    n = "straight"
+    t = "flat-hook-short-neck2"
+    u = "toothed"
+    cyrl-capital-zhe = "symmetric-connected"
+    zero = "slashed"
+    one = "no-base"
+    five = "vertical-upper-left-bar"
+    seven = "straight-serifless"
+    eight = "two-circles"
+    tilde = "low"
+    asterisk = "hex-low"
+    underscore = "high"
+    caret = "medium"
+    paren = "normal"
+    brace = "straight"
+    at = "threefold"
+    bar = "natural-slope"
+    ascii-grave = "straight"
+    question = "smooth"
+    lig-ltgteq = "flat"
+    lig-neq = "slightly-slanted"
+    lig-equal-chain = "with-notch"
+    lig-hyphen-chain = "with-notch"
+    lig-double-arrow-bar = "with-notch"
+    lig-single-arrow-bar = "with-notch"
+
+  [buildPlans.iosevka-custom.ligations]
+  inherits = "haskell"
+
