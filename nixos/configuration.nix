@@ -37,7 +37,13 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+   networkmanager.enable = true;
+   extraHosts = ''
+   172.25.25.10 gerrit.xgrid.co
+   172.25.25.20 jenkins.xgrid.co
+   '';
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Karachi";
@@ -91,29 +97,17 @@
       wget
       keepassxc
       bluetuith
+      blueman
       bluez
       pavucontrol
-      qutebrowser
-      xfce.xfce4-whiskermenu-plugin
 
       ## XOrg
       xorg.xbacklight
       xorg.xset
       xorg.xrdb
       xorg.xkill
-      
-      # Ricing
-      pywal
-      flat-remix-gtk
-      flat-remix-icon-theme
-      bibata-cursors
-
-      # Terminal
-      alacritty
-      jq
-      yq
-      fzf
-      ranger
+      xorg.xsel
+      xorg.xclip
     ];
   };
 
@@ -134,7 +128,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -143,5 +137,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }

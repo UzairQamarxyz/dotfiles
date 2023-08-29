@@ -9,7 +9,7 @@
   
     # Enable the XFCE Desktop Environment.
     displayManager.lightdm.enable = true;
-    desktopManager.xfce.enable = true;
+    desktopManager.plasma5.enable = true;
   
     layout = "us";
     xkbVariant = "dvorak";
