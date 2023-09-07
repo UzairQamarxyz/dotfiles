@@ -1,1 +1,33 @@
-/home/uzair/.cache/wal/colors.yml
+window:
+  padding:
+    x: 30
+    y: 30
+
+  dynamic_padding: false
+
+font:
+  normal:
+    family: IosevkaCustom Nerd Font
+
+  bold:
+    family: IosevkaCustom Nerd Font
+
+  bold_italic:
+    family: IosevkaCustom Nerd Font
+
+  size: 12.0
+
+selection:
+  save_to_clipboard: false
+
+cursor:
+  style: Beam
+  unfocused_hollow: true
+
+live_config_reload: true
+
+import:
+  - ~/.cache/wal/colors-alacritty.yml
+
+env:
+  WINIT_X11_SCALE_FACTOR: "1.0"

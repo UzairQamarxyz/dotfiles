@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-xset r rate 200 80 &                        # Speed xrate up
-setxkbmap -option caps:escape               # Set Capslock to Escape
