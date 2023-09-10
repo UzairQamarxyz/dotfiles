@@ -1,47 +1,52 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = [
+  home.packages = with pkgs; [
     # Development
     ## Misc.
-    pkgs.nodejs
-    pkgs.libtool
-    pkgs.git
-    pkgs.ripgrep
-    pkgs.coreutils
-    pkgs.fd
-    pkgs.slack
-    pkgs.shellcheck
-    pkgs.gore
-    pkgs.gotools
-    pkgs.gopls
-    pkgs.gomodifytags
-    pkgs.gotests
-    pkgs.black
-    pkgs.isort
-    pkgs.pipenv
-    pkgs.shfmt
-    pkgs.python311Packages.grip
-    pkgs.python311Packages.pyflakes
-    pkgs.python311Packages.pyflakes
-    pkgs.python311Packages.nose
-    pkgs.pre-commit
+    nodejs
+    libtool
+    git
+    ripgrep
+    coreutils
+    fd
+    slack
+    shellcheck
+    gore
+    gotools
+    gopls
+    gomodifytags
+    gotests
+    black
+    isort
+    pipenv
+    shfmt
+    python311Packages.grip
+    python311Packages.pyflakes
+    python311Packages.pyflakes
+    python311Packages.nose
+    pre-commit
+    nixfmt
+    terraform-ls
+    terraform-docs
+    tflint
+    haskell-language-server
+    haskellPackages.hoogle
+    stylish-haskell
 
     ## Python
-    pkgs.python3Full
+    python3Full
 
     ## Cloud
-    pkgs.awscli2
-    pkgs.terraform
-    pkgs.terraform-ls
-    pkgs.terraform-docs
+    awscli2
+    terraform
 
     ## Docker & K8s
-    pkgs.podman-tui
-    pkgs.kubectl
-    pkgs.eksctl
-    pkgs.kubernetes-helm
-    pkgs.helmfile
+    podman-tui
+    kubectl
+    eksctl
+    kubernetes-helm
+    helmfile
   ];
 
   programs = {
@@ -98,7 +103,5 @@
     };
   };
 
-  services = {
-    emacs.enable = true;
-  };
+  services = { emacs.enable = true; };
 }

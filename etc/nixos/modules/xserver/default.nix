@@ -2,10 +2,24 @@
 
 {
   nixpkgs.overlays = [
-    (final: prev: {
-      dwm = prev.dwm.overrideAttrs
-      (old: {
-        src = /home/uzair/.config/dwm ;
+    (self: super: {
+      dwm = super.dwm.overrideAttrs (old: {
+        src = /home/uzair/Documents/git/dwm;
+        # src = super.fetchFromGitHub {
+        #   owner = "UzairQamarxyz";
+        #   repo = "dwm";
+        #   rev = "cccc89fa7163be9ff89fb24c7880471be70000ca";
+        #   hash = "sha256-EpsQjqhFjdC4q1G839SeJ65qiOWNJskAyAXQ5Vdynus=";
+        # };
+      });
+      dwmblocks = super.dwmblocks.overrideAttrs (old: {
+        src = /home/uzair/Documents/git/dwmblocks-async;
+        # src = super.fetchFromGitHub {
+        #   owner = "UzairQamarxyz";
+        #   repo = "dwmblocks";
+        #   rev = "a933ce0d6109524b393feb3e7156cbf0de88b42c";
+        #   hash = "";
+        # };
       });
     })
   ];
@@ -13,50 +27,14 @@
   services = {
     unclutter-xfixes.enable = true;
 
-    dwm-status = {
-      enable = true;
-      order = ["audio" "battery" "network" "time"];
-      extraConfig = ''
-        separator = "    "
-
-        [audio]
-        template = "{ICO} {VOL}%"
-        icons = ["󰕿", "󰖀", "󰕾"]
-
-        [battery]
-        notifier_levels = [2, 5, 10, 15, 20]
-        charging = ""
-        discharging = ""
-        no_battery = ""
-        icons = ["", "", "", "", "", "", "", "", "", "", ""]
-
-        [network]
-        template = "{IPv4} · {ESSID}"
-
-        [time]
-        format = "%Y-%m-%d · %I:%M%p"
-        update_seconds = true
-      '';
-    };
-
     xserver = {
-      # Enable the X11 windowing system.
       enable = true;
       autorun = true;
       exportConfiguration = true;
 
-      displayManager = {
-        startx.enable = false;
+      displayManager = { lightdm.enable = true; };
 
-        lightdm = {
-          enable = true;
-        };
-      };
-
-      windowManager.dwm = {
-        enable = true;
-      };
-
+      windowManager.dwm.enable = true;
       layout = "us";
       xkbVariant = "dvorak";
       xkbOptions = "caps:escape_shifted_capslock";
@@ -66,7 +44,6 @@
       libinput = {
         enable = true;
 
-        # disabling touchpad acceleration
         touchpad = {
           accelProfile = "flat";
           accelSpeed = "0.8";
@@ -76,10 +53,7 @@
     };
   };
 
-  # Configure console keymap
-  console = {
-    useXkbConfig = true;
-  };
+  console = { useXkbConfig = true; };
 
   qt.platformTheme = "qt5ct";
 }
