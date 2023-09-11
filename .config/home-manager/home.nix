@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./ricing ./development ./xsession ./zsh ];
+  imports = [ ./ricing ./development ./xsession ./zsh ./xdg ];
   nixpkgs.config = { allowUnfree = true; };
 
   home.username = "uzair";
@@ -44,14 +44,6 @@
     bluez
     pavucontrol
   ];
-
-  xdg = {
-    enable = true;
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
-  };
 
   programs = { home-manager.enable = true; };
 
