@@ -129,7 +129,7 @@
   system.stateVersion = "unstable";
 
   programs = {
-    dconf.enable = true;
-    xfconf.enable = true;
+    dconf.enable = false;
+    xfconf.enable = false;
   };
 }

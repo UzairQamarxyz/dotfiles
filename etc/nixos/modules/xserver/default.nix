@@ -4,13 +4,12 @@
   nixpkgs.overlays = [
     (self: super: {
       dwm = super.dwm.overrideAttrs (old: {
-        src = /home/uzair/Documents/git/dwm;
-        # src = super.fetchFromGitHub {
-        #   owner = "UzairQamarxyz";
-        #   repo = "dwm";
-        #   rev = "cccc89fa7163be9ff89fb24c7880471be70000ca";
-        #   hash = "sha256-EpsQjqhFjdC4q1G839SeJ65qiOWNJskAyAXQ5Vdynus=";
-        # };
+        src = super.fetchFromGitHub {
+          owner = "UzairQamarxyz";
+          repo = "dwm";
+          rev = "8c0f07e24c445fd1cf80250909d1f19eefaa6752";
+          hash = "sha256-rnnDD8yokDdYgC8U01YvZKTWKWT/u3fHXykDqyOrTOw=";
+        };
       });
       dwmblocks = super.dwmblocks.overrideAttrs (old: {
         src = /home/uzair/Documents/git/dwmblocks-async;
