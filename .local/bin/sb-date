@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+icon="󰥔"
+
+date "+$icon %I:%M%p"

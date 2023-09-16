@@ -20,6 +20,14 @@
         #   hash = "";
         # };
       });
+      dmenu = super.dmenu.overrideAttrs (old: {
+        src = super.fetchFromGitHub {
+          owner = "UzairQamarxyz";
+          repo = "dmenu";
+          rev = "b66f815f20303c409ffd4ac6a5873fe5c5761b21";
+          hash = "sha256-D6QYCGURK10P2OWTDr5uUk367m8Oksmq6MjLrnDPXNE=";
+        };
+      });
     })
   ];
 

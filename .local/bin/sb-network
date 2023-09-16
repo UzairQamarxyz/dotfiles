@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+strength=""
+ssid=""
+wifi="󱛅 "
+ethernet=""
+
+# Ethernet
+[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethernet="󰈀 "
+
+# TUN
+[ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon="󰌾 "
+
+# Wifi
+if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ]; then
+    strength="$(grep "^\s*w" /proc/net/wireless | awk '{ print int($3 * 100 / 70)}')"
+    ssid="$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d\: -f2)"
+    case 1 in
+        $((strength >= 80))) wifi="󰤨 " ;;
+        $((strength >= 60))) wifi="󰤥 " ;;
+        $((strength >= 40))) wifi="󰤢 " ;;
+        $((strength >= 20))) wifi="󰤟 " ;;
+        *) wifi="󰤯 " && exit ;;
+    esac
+
+# elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ]; then
+#     [ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="󰖩 "
+fi
+
+echo "$wifi" "$ssid" "$ethernet" "$tunicon"
