@@ -6,20 +6,22 @@ for battery in /sys/class/power_supply/BAT?*; do
     case "$(cat "$battery/status" 2>&1)" in
         "Charging") status="󰂄" ;;
         "Full") status="󰁹" ;;
-        "Discharging") case "$capacity" in
-            $((capacity == 100))) status="󰁹" ;;
-            $((capacity == 90))) status="󰂂" ;;
-            $((capacity == 80))) status="󰂂" ;;
-            $((capacity == 70))) status="󰂀" ;;
-            $((capacity == 60))) status="󰁿" ;;
-            $((capacity == 50))) status="󰁾" ;;
-            $((capacity == 40))) status="󰁽" ;;
-            $((capacity == 30))) status="󰁼" ;;
-            $((capacity == 20))) status="󰁻" ;;
-            $((capacity == 10))) status="󰁺" ;;
-        esac ;;
+        "Discharging" | "Not charging")
+            case 1 in
+                $((capacity == 100))) status="󰁹" ;;
+                $((capacity >= 90))) status="󰂂" ;;
+                $((capacity >= 80))) status="󰂂" ;;
+                $((capacity >= 70))) status="󰂀" ;;
+                $((capacity >= 60))) status="󰁿" ;;
+                $((capacity >= 50))) status="󰁾" ;;
+                $((capacity >= 40))) status="󰁽" ;;
+                $((capacity >= 30))) status="󰁼" ;;
+                $((capacity >= 20))) status="󰁻" ;;
+                $((capacity >= 0))) status="󰁺" ;;
+            esac
+            ;;
         "Unknown") status="󰂑 " ;;
         *) exit 1 ;;
     esac
     echo "$status" "$capacity%"
-done && printf "\\n"
+done && echo
