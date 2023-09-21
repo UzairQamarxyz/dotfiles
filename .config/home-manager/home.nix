@@ -8,6 +8,8 @@
   home.homeDirectory = "/home/uzair";
   home.stateVersion = "23.05";
 
+  home.sessionPath = [ "$HOME/.local/bin" ];
+
   home.packages = with pkgs; [
     # Utils
     networkmanager
@@ -19,12 +21,13 @@
     flameshot
     pcmanfm
     feh
+    mpv
 
     # Internet
     luakit
     ungoogled-chromium
     librewolf
-    transmission
+    transmission-gtk
 
     # Terminal & CLI Utils
     alacritty
@@ -37,6 +40,7 @@
     ffmpegthumbnailer
     zip
     unzip
+    killall
 
     # Audio/Bluetooth
     bluetuith

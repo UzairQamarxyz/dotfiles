@@ -5,7 +5,7 @@
     # Ricing
     lxappearance
     pywal
-    ueberzug
+    ueberzugpp
     betterlockscreen
     libsForQt5.qtstyleplugins
     flat-remix-gtk

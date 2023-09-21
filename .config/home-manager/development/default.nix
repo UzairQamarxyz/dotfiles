@@ -21,6 +21,7 @@
     isort
     pipenv
     shfmt
+    python311Packages.cfn-lint
     python311Packages.grip
     python311Packages.pyflakes
     python311Packages.pyflakes
@@ -33,6 +34,7 @@
     haskell-language-server
     haskellPackages.hoogle
     stylish-haskell
+    go
 
     ## Python
     python3Full
@@ -50,6 +52,11 @@
   ];
 
   programs = {
+    go = {
+      enable = true;
+      goPath = "go";
+      goBin = ".local/go";
+    };
     emacs.enable = true;
     neovim = {
       enable = true;

@@ -6,6 +6,9 @@
     CARGO_HOME = "${config.xdg.configHome}/cargo";
     AWS_SHARED_CREDENTIALS_FILE = "${config.xdg.configHome}/aws/credentials";
     AWS_CONFIG_FILE = "${config.xdg.configHome}/aws/config";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    BROWSER = "librewolf";
   };
   xdg = {
     enable = true;
