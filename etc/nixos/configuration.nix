@@ -72,25 +72,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.etc."xdg/icon-theme/index.theme".text = ''
-    [Icon-Theme]
-    Inherits=Bibata-Modern-Ice
-  '';
-
-  environment.etc."xdg/gtk-2.0/settings.ini" = {
-    text = ''
-      [Settings]
-      gtk-cursor-theme-name="Bibata-Modern-Ice"
-    '';
-  };
-
-  environment.etc."xdg/gtk-3.0/settings.ini" = {
-    text = ''
-      [Settings]
-      gtk-cursor-theme-name=Bibata-Modern-Ice
-    '';
-  };
-
   environment = {
     systemPackages = with pkgs; [
       # Essentials
@@ -99,6 +80,8 @@
       neovim
       nix-prefetch-github
       bibata-cursors
+      flat-remix-gtk
+      flat-remix-icon-theme
 
       ## Xorg
       xorg.libX11.dev
@@ -109,17 +92,15 @@
       xorg.xrdb
       xorg.xkill
       xorg.xev
+      xorg.xwininfo
+      xdotool
       xclip
       xsel
       dwm-status
       dwmblocks
       dmenu
+      pstree
     ];
-
-    variables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
   };
 
   services.openssh.enable = true;
@@ -128,8 +109,19 @@
 
   system.stateVersion = "unstable";
 
+  systemd.services.sleeplock = {
+    description = "Lock the screen";
+    wantedBy = [ "sleep.target" ];
+    before = [ "sleep.target" ];
+    script = ''
+      betterlockscreen --lock
+    '';
+    serviceConfig.Type = "forking";
+    environment = { DISPLAY = ":0"; };
+  };
+
   programs = {
-    dconf.enable = false;
-    xfconf.enable = false;
+    dconf.enable = true;
+    xfconf.enable = true;
   };
 }

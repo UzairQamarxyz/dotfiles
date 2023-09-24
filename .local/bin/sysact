@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# A dmenu wrapper script for system functions.
+export WM="dwm"
+ctl="systemctl"
+
+case "$(printf "󰌾 lock\n󰍃 leave $WM\n󰜉 reboot\n shutdown\n󰒲 sleep\n" | dmenu -i -p 'Action: ')" in
+    '󰌾 lock') betterlockscreen -l ;;
+    "󰍃 leave $WM") kill -TERM "$(pidof $WM)" ;;
+    '󰒲 sleep') $ctl suspend -i ;;
+    '󰜉 reboot') $ctl reboot -i ;;
+    ' shutdown') $ctl poweroff -i ;;
+    *) exit 1 ;;
+esac

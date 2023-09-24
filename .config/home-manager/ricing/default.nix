@@ -8,8 +8,6 @@
     ueberzugpp
     betterlockscreen
     libsForQt5.qtstyleplugins
-    flat-remix-gtk
-    flat-remix-icon-theme
     font-manager
     emacs-all-the-icons-fonts
     emacsPackages.unicode-fonts
@@ -78,7 +76,6 @@
     size = 16;
     gtk.enable = true;
     x11.enable = true;
-    x11.defaultCursor = "left_ptr";
   };
 
   xresources = {

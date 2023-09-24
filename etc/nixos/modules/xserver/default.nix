@@ -7,8 +7,8 @@
         src = super.fetchFromGitHub {
           owner = "UzairQamarxyz";
           repo = "dwm";
-          rev = "8c0f07e24c445fd1cf80250909d1f19eefaa6752";
-          hash = "sha256-rnnDD8yokDdYgC8U01YvZKTWKWT/u3fHXykDqyOrTOw=";
+          rev = "f94ca71aa4b7df9383d8873f95e602afba1722a7";
+          hash = "sha256-BydC7A2zWyYv/U13ZD6iFoWDXsC6VJu3lY1e5bAGcVg=";
         };
       });
       dwmblocks = super.dwmblocks.overrideAttrs (old: {
@@ -24,8 +24,8 @@
         src = super.fetchFromGitHub {
           owner = "UzairQamarxyz";
           repo = "dmenu";
-          rev = "b66f815f20303c409ffd4ac6a5873fe5c5761b21";
-          hash = "sha256-D6QYCGURK10P2OWTDr5uUk367m8Oksmq6MjLrnDPXNE=";
+          rev = "2faf51c21e9e83f136677506271e592e28a8a6aa";
+          hash = "sha256-CGSv44I0HDj70YCHGFpuMwh9V+vDQTgEiDS08KXuVOs=";
         };
       });
     })
@@ -39,7 +39,23 @@
       autorun = true;
       exportConfiguration = true;
 
-      displayManager = { lightdm.enable = true; };
+      displayManager = {
+        lightdm = {
+          enable = true;
+          background = "/home/uzair/Pictures/wallpaper.png";
+          greeters.gtk = {
+            theme.package = pkgs.flat-remix-gtk;
+            theme.name = "Flat-Remix-GTK-Blue-Dark";
+
+            iconTheme.package = pkgs.flat-remix-icon-theme;
+            iconTheme.name = "Flat-Remix-Blue-Dark";
+
+            cursorTheme.package = pkgs.bibata-cursors;
+            cursorTheme.name = "Bibata-Modern-Ice";
+            cursorTheme.size = 16;
+          };
+        };
+      };
 
       windowManager.dwm.enable = true;
       layout = "us";
@@ -58,6 +74,25 @@
         };
       };
     };
+  };
+
+  environment.etc."xdg/icon-theme/index.theme".text = ''
+    [Icon-Theme]
+    Inherits=Bibata-Modern-Ice
+  '';
+
+  environment.etc."xdg/gtk-2.0/settings.ini" = {
+    text = ''
+      [Settings]
+      gtk-cursor-theme-name="Bibata-Modern-Ice"
+    '';
+  };
+
+  environment.etc."xdg/gtk-3.0/settings.ini" = {
+    text = ''
+      [Settings]
+      gtk-cursor-theme-name=Bibata-Modern-Ice
+    '';
   };
 
   console = { useXkbConfig = true; };

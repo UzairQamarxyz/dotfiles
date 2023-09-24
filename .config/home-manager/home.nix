@@ -11,7 +11,7 @@
   home.sessionPath = [ "$HOME/.local/bin" ];
 
   home.packages = with pkgs; [
-    # Utils
+    kotatogram-desktop
     networkmanager
     networkmanagerapplet
     keepassxc
@@ -20,6 +20,7 @@
     xfce.xfce4-notifyd
     flameshot
     pcmanfm
+    nsxiv
     feh
     mpv
 
