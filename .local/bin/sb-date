@@ -2,4 +2,4 @@
 
 icon="󰥔"
 
-date "+$icon %I:%M%p"
+echo "^B3^" "$(date "+$icon %I:%M%p")" "^d^"
