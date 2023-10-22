@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./ricing ./development ./xsession ./zsh ./xdg ];
+  imports = [ ./ricing ./development ./xsession ./zsh ./xdg ./gaming ];
   nixpkgs.config = { allowUnfree = true; };
 
   home.username = "uzair";
@@ -23,12 +23,22 @@
     nsxiv
     feh
     mpv
+    udisks
+    udiskie
+    appimage-run
+    notation
+    docker-credential-helpers
+    pass
+    gnupg
+    pinentry
 
     # Internet
     luakit
     ungoogled-chromium
     librewolf
     transmission-gtk
+    python311Packages.deemix
+    syncthing
 
     # Terminal & CLI Utils
     alacritty
@@ -48,6 +58,10 @@
     blueman
     bluez
     pavucontrol
+    tauon
+    cmus
+    # etcher
+    woeusb-ng
   ];
 
   programs = { home-manager.enable = true; };

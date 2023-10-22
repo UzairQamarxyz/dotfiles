@@ -11,10 +11,15 @@
     font-manager
     emacs-all-the-icons-fonts
     emacsPackages.unicode-fonts
+    xsettingsd
     (nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
   ];
 
   services = {
+    xsettingsd = {
+      enable = true;
+      package = pkgs.xsettingsd;
+    };
     picom = {
       enable = true;
       backend = "glx";
@@ -66,6 +71,9 @@
 
     iconTheme.package = pkgs.flat-remix-icon-theme;
     iconTheme.name = "Flat-Remix-Blue-Dark";
+
+    cursorTheme.package = pkgs.bibata-cursors;
+    cursorTheme.name = "Bibata-Modern-Ice";
   };
 
   qt.enable = true;

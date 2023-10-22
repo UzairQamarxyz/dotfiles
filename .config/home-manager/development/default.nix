@@ -35,6 +35,7 @@
     haskellPackages.hoogle
     stylish-haskell
     go
+    nodePackages.prettier
 
     ## Python
     python3Full
@@ -52,6 +53,7 @@
   ];
 
   programs = {
+    gpg.enable = true;
     go = {
       enable = true;
       goPath = "go";
@@ -110,5 +112,13 @@
     };
   };
 
-  services = { emacs.enable = true; };
+  services = {
+    emacs.enable = true;
+    gnome-keyring.enable = true;
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
+      pinentryFlavor = "gtk2";
+    };
+  };
 }

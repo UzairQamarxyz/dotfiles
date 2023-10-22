@@ -9,6 +9,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     BROWSER = "librewolf";
+    XCURSOR_DISCOVER = 1;
   };
   xdg = {
     enable = true;
