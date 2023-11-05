@@ -1,0 +1,10 @@
+[Unit]
+Description="xss-lock service"
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/xss-lock -- /usr/bin/betterlockscreen --span --lock
