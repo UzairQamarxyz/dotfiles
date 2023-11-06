@@ -1,5 +1,5 @@
 [Unit]
-Description="Unclutter"
+Description="Dwmblocks"
 After=graphical-session-pre.target
 PartOf=graphical-session.target
 
@@ -7,7 +7,6 @@ PartOf=graphical-session.target
 WantedBy=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/unclutter --ignore-scrolling --jitter 20
-PassEnvironment="DISPLAY"
+ExecStart=/usr/local/bin/dwmblocks
 RestartSec=3
 Restart=always
