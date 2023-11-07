@@ -4,7 +4,7 @@
 
        :completion
        (company +childframe)
-       (ivy +childframe +icons +childframe +prescient)
+       (vertico +childframe +icons)
 
        :ui
        deft
