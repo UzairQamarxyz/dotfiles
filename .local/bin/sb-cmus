@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+if ps -C cmus > /dev/null; then
+    ARTIST=$(cmus-remote -Q | grep -a '^tag artist' | awk '{gsub("tag artist ", "");print}')
+    TRACK=$(cmus-remote -Q | grep -a '^tag title' | awk '{gsub("tag title ", "");print}')
+    STATUS=$(cmus-remote -Q | grep -a '^status' | awk '{gsub("status ", "");print}')
+
+    if [ "$STATUS" = "playing" ]; then
+        STATUS="󰐊"
+    else
+        STATUS="󰏤"
+    fi
+fi
+
+echo "[34;4m $STATUS $ARTIST - $TRACK [0m"

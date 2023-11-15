@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+icon="󰥔"
+
+echo "[35;4m $(date "+$icon %I:%M%p") [0m"
