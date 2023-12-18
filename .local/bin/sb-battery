@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+for battery in /sys/class/power_supply/BAT?*; do
+    [ -n "${capacity+x}" ] && printf " "
+    capacity="$(cat "$battery/capacity" 2>&1)"
+    case "$(cat "$battery/status" 2>&1)" in
+        "Charging") status="󰂄" ;;
+        "Full") status="󰁹" ;;
+        "Discharging" | "Not charging")
+            case 1 in
+                $((capacity == 100))) status="󰁹" ;;
+                $((capacity >= 90))) status="󰂂" ;;
+                $((capacity >= 80))) status="󰂂" ;;
+                $((capacity >= 70))) status="󰂀" ;;
+                $((capacity >= 60))) status="󰁿" ;;
+                $((capacity >= 50))) status="󰁾" ;;
+                $((capacity >= 40))) status="󰁽" ;;
+                $((capacity >= 30))) status="󰁼" ;;
+                $((capacity >= 20))) status="󰁻" ;;
+                $((capacity >= 0))) status="󰁺" ;;
+            esac
+            ;;
+        "Unknown") status="󰂑 " ;;
+        *) exit 1 ;;
+    esac
+    echo "[32;4m $status $capacity% [0m"
+done && echo

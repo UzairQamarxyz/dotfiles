@@ -27,4 +27,4 @@ if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ]; then
 #     [ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="󰖩 "
 fi
 
-echo "[31;4m $wifi$ethernet$tunicon $ssid [0m"
+echo "[31;4m$wifi$ethernet$tunicon $ssid[0m"

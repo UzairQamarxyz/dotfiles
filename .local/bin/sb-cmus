@@ -10,6 +10,16 @@ if ps -C cmus > /dev/null; then
     else
         STATUS="󰏤"
     fi
-fi
 
-echo "[34;4m $STATUS $ARTIST - $TRACK [0m"
+    if [ -z "$ARTIST" ]; then
+        ARTIST="Unknown Artist"
+    fi
+
+    if [ -z "$TRACK" ]; then
+        TRACK="Unknown Title"
+    fi
+
+    echo "[34;4m$STATUS $ARTIST - $TRACK[0m"
+else
+    echo "[34;4m󰏤 Unknown Artist - Unknown Title[0m"
+fi
