@@ -1,10 +1,9 @@
 [Unit]
 Description="Dwmblocks"
-After=graphical-session-pre.target
-PartOf=graphical-session.target
+After=default.target
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target
 
 [Service]
 ExecStart=/usr/local/bin/dwmblocks
