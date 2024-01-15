@@ -1,0 +1,5 @@
+QT_QPA_PLATFORMTHEME=gtk2
+EDITOR=nvim
+BROWSER=floorp
+GTK_THEME=Flat-Remix-GTK-Blue-Dark
+ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
