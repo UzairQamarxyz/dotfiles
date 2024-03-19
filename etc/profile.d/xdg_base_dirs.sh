@@ -32,10 +32,11 @@ export GOPATH="$XDG_DATA_HOME/go"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export HISTFILE="$XDG_DATA_HOME/history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
-
 
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
