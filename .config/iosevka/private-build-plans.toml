@@ -9,6 +9,9 @@ exportGlyphNames = false
   inherits = "ss14"
 
     [buildPlans.iosevka-custom.variants.design]
+    [buildPlans.iosevka-custom.variants.upright]
+    [buildPlans.iosevka-custom.variants.italic]
+    [buildPlans.iosevka-custom.variants.oblique]
     capital-i = "short-serifed"
     capital-j = "serifless"
     capital-w = "straight-flat-top-serifless"

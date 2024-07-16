@@ -1,8 +1,10 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Font
-(setq doom-font (font-spec :family "IosevkaCustom Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "Proxima Nova" :size 13))
+(setq doom-font (font-spec :family "Iosevka Custom" :size 14)
+      doom-symbol-font (font-spec :family "Symbola" :size 14)
+      doom-variable-pitch-font (font-spec :family "NanumGothic" :size 14)
+      )
 
 ;; Theme
 (setq doom-theme 'kanagawa)
@@ -11,7 +13,7 @@
 (setq display-line-numbers-type 'relative)
 
 ;; Org-mode
-(setq org-directory "~/org/")
+(setq org-directory "~/Documents/org")
 
 ;; Set Transparency
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
@@ -19,19 +21,11 @@
 (setq org-hide-emphasis-markers t)
 
 ;; Set fringe style
-(set-fringe-mode 0)
-
-;; Terraform config
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :hook ((terraform-mode . lsp-deferred)))
-;; (setq lsp-disabled-clients '(tfls))
-;; (setq lsp-terraform-ls-enable-show-reference t)
+;; (set-fringe-mode 0)
 
 ;; Ignore .terraform folders
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.terraform\\'"))
-
 
 ;; Cfn-Lint
 (define-derived-mode cfn-yaml-mode yaml-mode
@@ -65,3 +59,6 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
   (add-hook 'cfn-yaml-mode-hook 'flycheck-mode))
 
 (setq fancy-splash-image "/home/uzair/Pictures/vectors/wallpaper.png")
+
+(setq lsp-modeline-code-action-fallback-icon "")
+(require 'lsp-mode)
