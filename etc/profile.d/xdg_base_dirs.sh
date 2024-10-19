@@ -7,7 +7,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export TERMINAL_PROG="alacritty"
-export BROWSER="floorp"
+export BROWSER="librewolf"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -29,6 +29,8 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
+# Add GOPATH to PATH
+export PATH="$PATH:$GOPATH/bin"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export HISTFILE="$XDG_DATA_HOME/history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
@@ -39,7 +41,6 @@ export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1" # Mozilla smooth scrolling/touchpads.
 
 export DOOMDIR="$XDG_CONFIG_HOME/doom"
