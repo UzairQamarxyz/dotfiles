@@ -6,7 +6,7 @@ wifi="󱛅 "
 ethernet=""
 
 # Ethernet
-# [ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethernet="󰈀 "
+[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethernet="󰈀 "
 
 # TUN
 [ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon="󰌾 "
@@ -27,4 +27,4 @@ if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ]; then
 #     [ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="󰖩 "
 fi
 
-echo "[31;4m$wifi$ethernet$tunicon $ssid[0m"
+echo "$wifi$ethernet$tunicon $ssid"

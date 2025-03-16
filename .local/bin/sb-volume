@@ -1,24 +1,16 @@
 #!/usr/bin/env sh
 
-vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+mute="$(pactl get-sink-mute @DEFAULT_SINK@ | awk -F: '{ print $2 }')"
 
-[ "$vol" != "${vol%\[MUTED\]}" ] && echo "[33;4m󰸈 Mute[0m" && exit
+[ "$mute" == " yes" ] && echo "󰸈 Mute" && exit
 
-vol="${vol#Volume: }"
-
-split() {
-    IFS=$2
-    set -- $1
-    printf '%s' "$@"
-}
-
-vol="$(printf "%.0f" "$(split "$vol" ".")")"
+vol="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -n 1)"
 
 case 1 in
     $((vol >= 70))) icon="󰕾" ;;
     $((vol >= 30))) icon="󰖀" ;;
     $((vol >= 1))) icon="󰕿" ;;
-    *) echo "[33;4m󰸈 Mute[0m" && exit ;;
+    *) echo "󰸈 Mute" && exit ;;
 esac
 
-echo "[33;4m$icon $vol%[0m"
+echo "$icon $vol%"

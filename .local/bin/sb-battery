@@ -23,5 +23,5 @@ for battery in /sys/class/power_supply/BAT?*; do
         "Unknown") status="󰂑 " ;;
         *) exit 1 ;;
     esac
-    echo "[32;4m $status $capacity% [0m"
+    echo "$status $capacity%"
 done && echo

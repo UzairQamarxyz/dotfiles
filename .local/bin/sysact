@@ -2,7 +2,7 @@
 
 # A dmenu wrapper script for system functions.
 export WM="dwm"
-ctl="systemctl"
+ctl="loginctl"
 
 case "$(printf "󰌾 lock\n󰍃 leave $WM\n󰜉 reboot\n shutdown\n󰒲 sleep\n" | dmenu -i -p 'Action: ')" in
     '󰌾 lock') betterlockscreen -l ;;

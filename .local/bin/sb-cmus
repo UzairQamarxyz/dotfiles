@@ -19,7 +19,7 @@ if ps -C cmus > /dev/null; then
         TRACK="Unknown Title"
     fi
 
-    echo "[34;4m$STATUS $ARTIST - $TRACK[0m"
+    echo "$STATUS $ARTIST - $TRACK"
 else
-    echo "[34;4m󰏤 Unknown Artist - Unknown Title[0m"
+    echo "󰏤 Unknown Artist - Unknown Title"
 fi
