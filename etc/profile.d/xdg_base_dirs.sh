@@ -23,13 +23,14 @@ export SCREENRC="$XDG_CONFIG_HOME/screen/screenrc"
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export XCURSOR_PATH="/usr/share/icons:$XDG_DATA_HOME/icons"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+# Add GOPATH to PATH
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
-# Add GOPATH to PATH
 export PATH="$PATH:$GOPATH/bin"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export HISTFILE="$XDG_DATA_HOME/history"
@@ -44,3 +45,13 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export MOZ_USE_XINPUT2="1" # Mozilla smooth scrolling/touchpads.
 
 export DOOMDIR="$XDG_CONFIG_HOME/doom"
+
+# Android
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
+
+# AWS
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+
+# Java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
