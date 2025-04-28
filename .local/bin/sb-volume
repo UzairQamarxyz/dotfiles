@@ -1,16 +1,14 @@
 #!/usr/bin/env sh
 
-mute="$(pactl get-sink-mute @DEFAULT_SINK@ | awk -F: '{ print $2 }')"
+VOL=$(pamixer --get-volume)
+STATE=$(pamixer --get-mute)
 
-[ "$mute" == " yes" ] && echo "󰸈 Mute" && exit
-
-vol="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -n 1)"
-
-case 1 in
-    $((vol >= 70))) icon="󰕾" ;;
-    $((vol >= 30))) icon="󰖀" ;;
-    $((vol >= 1))) icon="󰕿" ;;
-    *) echo "󰸈 Mute" && exit ;;
-esac
-
-echo "$icon $vol%"
+if [ "$STATE" = "true" ] || [ "$VOL" -eq 0 ]; then
+    printf "󰸈 Mute"
+elif [ "$VOL" -gt 0 ] && [ "$VOL" -le 33 ]; then
+    printf "󰕿 %s%%" "$VOL"
+elif [ "$VOL" -gt 33 ] && [ "$VOL" -le 66 ]; then
+    printf "󰖀 %s%%" "$VOL"
+else
+    printf "󰕾 %s%%" "$VOL"
+fi

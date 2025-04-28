@@ -1,30 +1,22 @@
 #!/usr/bin/env sh
 
-strength=""
-ssid=""
-wifi="󱛅 "
-ethernet=""
-
-# Ethernet
-[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethernet="󰈀 "
-
-# TUN
-[ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon="󰌾 "
+CONNAME=$(nmcli -a | grep 'Wired connection' | awk 'NR==1{print $1}')
+ICON=" "
 
 # Wifi
 if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ]; then
+    CONNAME=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)
     strength="$(grep "^\s*w" /proc/net/wireless | awk '{ print int($3 * 100 / 70)}')"
-    ssid="$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d\: -f2)"
     case 1 in
-        $((strength >= 80))) wifi="󰤨 " ;;
-        $((strength >= 60))) wifi="󰤥 " ;;
-        $((strength >= 40))) wifi="󰤢 " ;;
-        $((strength >= 20))) wifi="󰤟 " ;;
-        *) wifi="󰤯 " && exit ;;
+    $((strength >= 80))) ICON="󰤨 " ;;
+    $((strength >= 60))) ICON="󰤥 " ;;
+    $((strength >= 40))) ICON="󰤢 " ;;
+    $((strength >= 20))) ICON="󰤟 " ;;
+    *) ICON="󰤯 " && exit ;;
     esac
-
-# elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ]; then
-#     [ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="󰖩 "
+elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ]; then
+    ICON="󰤭 "
+    CONNAME="No Internet"
 fi
 
-echo "$wifi$ethernet$tunicon $ssid"
+printf "%s %s" "$ICON" "$CONNAME"
