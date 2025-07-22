@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-FILE_PATH="$1"
-wal -i "${FILE_PATH}" -o ~/.config/wal/done.sh &&
-	dwmc xrdb && cp "${FILE_PATH}"  ~/Pictures/wallpaper.png &&
-	betterlockscreen -u "${FILE_PATH}"

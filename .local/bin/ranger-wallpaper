@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-FILE_PATH="$1"
-feh --bg-fill "${FILE_PATH}" &&
-	cp "${FILE_PATH}" ~/Pictures/wallpaper.png &&
-	betterlockscreen -u "${FILE_PATH}"
