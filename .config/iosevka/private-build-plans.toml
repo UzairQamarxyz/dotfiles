@@ -1,17 +1,71 @@
-[buildPlans.iosevka-custom]
+[buildPlans.IosevkaCustom]
 family = "Iosevka Custom"
-serifs = "sans"
 spacing = "fontconfig-mono"
+serifs = "sans"
 noCvSs = false
 exportGlyphNames = false
 
-  [buildPlans.iosevka-custom.variants]
+  [buildPlans.IosevkaCustom.variants]
   inherits = "ss14"
 
-    [buildPlans.iosevka-custom.variants.design]
-    [buildPlans.iosevka-custom.variants.upright]
-    [buildPlans.iosevka-custom.variants.italic]
-    [buildPlans.iosevka-custom.variants.oblique]
+    [buildPlans.IosevkaCustom.variants.design]
+    three = "two-arcs"
+    five = "upright-arched-serifless"
+    seven = "straight-serifless"
+    zero = "tall-reverse-slashed"
+    capital-m = "flat-bottom-serifless"
+    f = "serifless"
+    g = "single-storey-serifless"
+    i = "flat-tailed"
+    j = "serifless"
+    l = "flat-tailed"
+    u = "toothed-serifless"
+    asterisk = "turn-hex-low"
+    underscore = "high"
+    ascii-grave = "straight"
+    ascii-single-quote = "straight"
+    paren = "normal"
+    brace = "straight"
+    question = "smooth"
+    pilcrow = "low"
+    lig-equal-chain = "with-notch"
+    lig-hyphen-chain = "with-notch"
+    lig-plus-chain = "with-notch"
+    lig-double-arrow-bar = "with-notch"
+    lig-single-arrow-bar = "with-notch"
+
+    [buildPlans.IosevkaCustom.variants.italic]
+    three = "two-arcs"
+    five = "upright-arched-serifless"
+    seven = "straight-serifless"
+    zero = "tall-reverse-slashed"
+    capital-m = "flat-bottom-serifless"
+    f = "serifless"
+    g = "single-storey-serifless"
+    i = "flat-tailed"
+    j = "serifless"
+    l = "flat-tailed"
+    u = "toothed-serifless"
+    asterisk = "turn-hex-low"
+    underscore = "high"
+    ascii-grave = "straight"
+    ascii-single-quote = "straight"
+    paren = "normal"
+    brace = "straight"
+    question = "smooth"
+    pilcrow = "low"
+    lig-equal-chain = "with-notch"
+    lig-hyphen-chain = "with-notch"
+    lig-plus-chain = "with-notch"
+    lig-double-arrow-bar = "with-notch"
+    lig-single-arrow-bar = "with-notch"
+
+    [buildPlans.IosevkaCustom.variants.oblique]
+    one = "no-base"
+    five = "upright-arched-serifless"
+    seven = "straight-serifless"
+    eight = "two-circles"
+    zero = "unslashed"
     capital-i = "short-serifed"
     capital-j = "serifless"
     capital-w = "straight-flat-top-serifless"
@@ -25,20 +79,15 @@ exportGlyphNames = false
     t = "flat-hook-short-neck2"
     u = "toothed-serifless"
     cyrl-capital-zhe = "symmetric-connected"
-    zero = "unslashed"
-    one = "no-base"
-    five = "upright-arched-serifless"
-    seven = "straight-serifless"
-    eight = "two-circles"
     tilde = "low"
     asterisk = "hex-low"
     underscore = "high"
     caret = "medium"
+    ascii-grave = "straight"
     paren = "normal"
     brace = "straight"
     at = "threefold"
     bar = "natural-slope"
-    ascii-grave = "straight"
     question = "smooth"
     lig-ltgteq = "flat"
     lig-neq = "slightly-slanted"
@@ -47,6 +96,40 @@ exportGlyphNames = false
     lig-double-arrow-bar = "with-notch"
     lig-single-arrow-bar = "with-notch"
 
-  [buildPlans.iosevka-custom.ligations]
+  [buildPlans.IosevkaCustom.ligations]
   inherits = "haskell"
 
+[buildPlans.IosevkaCustom.widths.Normal]
+shape = 500
+menu = 5
+css = "normal"
+
+[buildPlans.IosevkaCustom.widths.Extended]
+shape = 600
+menu = 7
+css = "expanded"
+
+[buildPlans.IosevkaCustom.widths.Condensed]
+shape = 416
+menu = 3
+css = "condensed"
+
+[buildPlans.IosevkaCustom.widths.SemiCondensed]
+shape = 456
+menu = 4
+css = "semi-condensed"
+
+[buildPlans.IosevkaCustom.widths.SemiExtended]
+shape = 548
+menu = 6
+css = "semi-expanded"
+
+[buildPlans.IosevkaCustom.widths.ExtraExtended]
+shape = 658
+menu = 8
+css = "extra-expanded"
+
+[buildPlans.IosevkaCustom.widths.UltraExtended]
+shape = 720
+menu = 9
+css = "ultra-expanded"
