@@ -1,0 +1,170 @@
+#!/bin/sh
+
+# ===================================================================
+# Section 1: Configuration & Autostart
+# ===================================================================
+# This section replaces dwm's hardcoded settings and autostart patches.
+
+# Set the modifier key. Mod4 is usually the Super/Windows key.
+# Corresponds to: #define MODKEY Mod4Mask
+mod="Mod4"
+terminal="alacritty"
+browser="floorp"
+
+riverctl spawn dbus-update-activation-environment SEATD_SOCK DISPLAY WAYLAND _DISPLAY XDG_CURRENT_DESKTOP=river
+
+riverctl default-layout wideriver
+
+wideriver --layout left                             \
+          --layout-alt  monocle                     \
+          --stack even                              \
+          --count-master 1                          \
+          --ratio-master 0.55                       \
+          --no-smart-gaps                           \
+          --inner-gaps 6                            \
+          --outer-gaps 6                            \
+          --border-width-monocle 0                  \
+          --border-width 0 &
+
+# Set border colors (from dwm's SchemeNorm and SchemeSel)
+# riverctl border-color-unfocused 0x727169
+# riverctl border-color-focused 0x7FB4CA
+# riverctl border-color-urgent 0x<your_color>
+
+# Set border width (from dwm's borderpx). You have 0, so floating windows
+# will have a 1px border by default unless you set this.
+riverctl border-width 0
+
+# Start essential background applications.
+# This replaces autostart scripts or patched dwm functionality.
+# You need a Wayland-compatible bar, notification daemon, wallpaper setter, etc.
+# Examples:
+waybar &
+# mako &
+swaybg -i /home/uzair/Pictures/wallpaper.png &
+
+# --------------------------------------------------------
+# WM BINDINGS
+# --------------------------------------------------------
+riverctl map normal "$mod"+Shift Q close
+riverctl map normal "$mod"+Control+Shift Q exit
+riverctl map normal "$mod" K focus-view previous                 # focus previous
+riverctl map normal "$mod" J focus-view next                     # focus next
+riverctl map normal "$mod"+Shift K swap previous                 # move up in stack
+riverctl map normal "$mod"+Shift J swap next                     # move down in stack
+riverctl map normal "$mod" Period focus-output next              # focus next monitor
+riverctl map normal "$mod" Comma focus-output previous           # focus previous monitor
+riverctl map normal "$mod"+Shift Period send-to-output next      # send to next monitor
+riverctl map normal "$mod"+Shift Comma send-to-output previous   # send to previous monitor
+riverctl map normal "$mod"+Shift Return zoom                     # swap master and focused
+riverctl map normal "$mod" F toggle-float                        # toggle floating
+riverctl map normal "$mod"+Shift F toggle-fullscreen             # toggle fullscreen
+riverctl map normal "$mod"+Shift 0 set-view-tags $(( (1 << 32)-1 ))     # pin focused to all tags 
+riverctl map normal "$mod" Tab focus-previous-tags                 # toggle between previous tag and current one
+riverctl map normal "$mod"+Alt L move right 100                  # move floated focused right
+riverctl map normal "$mod"+Alt H move left 100                   # move floated focused left
+riverctl map normal "$mod"+Alt K move up 100                     # move floated focused up
+riverctl map normal "$mod"+Alt J move down 100                   # move floated focused down
+riverctl map normal "$mod"+Control L resize horizontal 50        # grow horizontally
+riverctl map normal "$mod"+Control H resize horizontal -50       # shrink horizontally
+riverctl map normal "$mod"+Control K resize vertical 50          # grow vertically
+riverctl map normal "$mod"+Control J resize vertical -50         # shrink vertically
+
+# Dmenu
+riverctl map normal "$mod" D spawn "fuzzel"
+# Terminal
+riverctl map normal "$mod" Return spawn "$terminal"
+# Ranger
+riverctl map normal "$mod" E spawn "$terminal -e ranger"
+# Cmus
+riverctl map normal "$mod" C spawn "$terminal -e cmus"
+# Browser
+riverctl map normal "$mod" W spawn "$browser"
+# Nmtui
+riverctl map normal "$mod"+Shift W spawn "$terminal -e nmtui"
+# Lockscreen
+riverctl map normal "$mod" X spawn "betterlockscreen --lock"
+# Emacs (bound to Calculator key)
+riverctl map normal None XF86Calculator spawn "emacsclient -c -a 'emacs'"
+# Screenshot
+riverctl map normal None Print spawn "flameshot gui"
+# System actions script
+riverctl map normal "$mod" BackSpace spawn "sysact"
+
+# --- Media & System Controls ---
+
+# Cmus controls
+riverctl map normal "$mod" P spawn 'sh -c "cmus-remote --pause"'
+riverctl map normal "$mod" bracketleft spawn 'sh -c "cmus-remote --prev"'
+riverctl map normal "$mod"+Shift bracketleft spawn 'sh -c "cmus-remote --seek -10"'
+riverctl map normal "$mod" bracketright spawn 'sh -c "cmus-remote --next"'
+riverctl map normal "$mod"+Shift bracketright spawn 'sh -c "cmus-remote --seek +10"'
+
+# Volume controls
+riverctl map normal None XF86AudioMute spawn 'sh -c "pamixer -t"'
+riverctl map normal None XF86AudioRaiseVolume spawn 'sh -c "pamixer -i 5"'
+riverctl map normal None XF86AudioLowerVolume spawn 'sh -c "pamixer -d 5"'
+
+# Brightness controls
+riverctl map normal None XF86MonBrightnessUp spawn "brightnessctl set 2.5%+"
+riverctl map normal None XF86MonBrightnessDown spawn "brightnessctl set 2.5%-"
+
+for i in $(seq 1 7)
+do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Super $i set-focused-tags $tags         # focus tag
+    riverctl map normal Super+Shift $i set-view-tags $tags      # send focused to tag
+done
+
+# --------------------------------------------------------
+# TILER BINDINGS (wideriver)
+# --------------------------------------------------------
+riverctl map normal "$mod" H send-layout-cmd wideriver "--ratio -0.05"
+riverctl map normal "$mod" L send-layout-cmd wideriver "--ratio +0.05"
+riverctl map normal "$mod" M send-layout-cmd wideriver "--layout monocle"
+riverctl map normal "$mod" T send-layout-cmd wideriver "--layout left"
+
+# ===================================================================
+# Section 6: Tag (Workspace) Keybindings
+# ===================================================================
+# This section translates your `TAGKEYS` macro. river's tags work almost
+# identically to dwm's, using a bitmask.
+
+# View all tagged windows
+all_tags=$(((1 << 32) - 1))
+riverctl map normal $mod 0 set-focused-tags $all_tags
+riverctl map normal $mod+Shift 0 set-view-tags $all_tags
+
+# ===================================================================
+# Section 7: Mouse & Pointer Bindings
+# ===================================================================
+# This section translates your `buttons[]` array.
+# river uses modes for this. We enter a "move" or "resize" mode.
+# BTN_LEFT=272, BTN_MIDDLE=273, BTN_RIGHT=274
+
+# Move window with Mod + Left Click
+riverctl map-pointer normal "$mod" BTN_LEFT move-view
+# Resize window with Mod + Right Click
+riverctl map-pointer normal "$mod"+Shift BTN_LEFT resize-view
+
+# ===================================================================
+# Section 8: Exiting River
+# ===================================================================
+# Corresponds to: quit function
+
+riverctl focus-follows-cursor normal
+
+# Set touchpad by grabbing the event
+for pad in $(riverctl list-inputs | grep -i touchpad )
+do
+  riverctl input $pad events enabled
+  riverctl input $pad tap enabled
+done
+
+riverctl set-repeat 90 150
+
+riverctl keyboard-layout -options "caps:escape_shifted_capslock" "us(dvorak)"
+
+riverctl output-attach-mode bottom
+
+riverctl map normal "$mod" tab focus-previous-tags
