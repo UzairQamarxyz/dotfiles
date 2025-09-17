@@ -1,0 +1,16 @@
+MenuBar=Disabled
+
+[Desktop Entry]
+DefaultProfile=Default.profile
+
+[General]
+ConfigVersion=1
+
+[KonsoleWindow]
+AllowMenuAccelerators=true
+
+[TabBar]
+SearchTabsButton=HideSearchTabsButton
+
+[UiSettings]
+ColorScheme=

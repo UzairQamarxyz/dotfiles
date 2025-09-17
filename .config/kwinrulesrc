@@ -1,0 +1,9 @@
+[69d60ae6-5060-4953-b7c3-f0bd4a2ad9f5]
+Description=No Titlebar
+noborder=true
+noborderrule=2
+wmclasscomplete=true
+
+[General]
+count=1
+rules=69d60ae6-5060-4953-b7c3-f0bd4a2ad9f5

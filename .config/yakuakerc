@@ -1,0 +1,20 @@
+[Appearance]
+HideSkinBorders=true
+Skin=materia-dark
+SkinInstalledWithKns=true
+TerminalHighlightOnManualActivation=true
+
+[Behavior]
+FocusFollowsMouse=true
+
+[Desktop Entry]
+DefaultProfile=Default.profile
+
+[Dialogs]
+FirstRun=false
+
+[Notification Messages]
+hinding_title_bar=false
+
+[Window]
+DynamicTabTitles=true
