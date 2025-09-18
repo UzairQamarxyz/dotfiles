@@ -1,5 +1,5 @@
 [Activities][LastVirtualDesktop]
-a55d3e8d-049c-4105-b90a-08a78134b722=9ca71a23-a26c-450d-856d-c19640b5e18a
+a55d3e8d-049c-4105-b90a-08a78134b722=1ec0a6f1-0fba-40bc-a8b8-772a2a7c4024
 
 [Desktops]
 Id_1=a98f2419-92dd-4e30-a4f7-3911474548a2
@@ -36,6 +36,7 @@ columnsLayoutOrder=0
 directionalKeyDwm=true
 directionalKeyFocus=false
 floatingLayoutOrder=0
+limitTileWidthRatio=0
 monocleMaximize=false
 noTileBorder=true
 preventMinimize=true

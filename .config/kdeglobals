@@ -10,7 +10,7 @@ IntensityAmount=0.1
 IntensityEffect=2
 
 [ColorEffects:Inactive]
-ChangeSelectionColor=true
+ChangeSelectionColor=false
 Color=112,111,110
 ColorAmount=0.025
 ColorEffect=2
@@ -22,7 +22,7 @@ IntensityEffect=0
 
 [Colors:Button]
 BackgroundAlternate=30,87,116
-BackgroundNormal=22,22,29
+BackgroundNormal=51,51,67
 DecorationFocus=34,50,73
 DecorationHover=34,50,73
 ForegroundActive=61,174,233
@@ -36,7 +36,7 @@ ForegroundVisited=149,127,184
 
 [Colors:Complementary]
 BackgroundAlternate=30,87,116
-BackgroundNormal=11,13,21
+BackgroundNormal=31,31,40
 DecorationFocus=61,174,233
 DecorationHover=61,174,233
 ForegroundActive=61,174,233
@@ -50,7 +50,7 @@ ForegroundVisited=155,89,182
 
 [Colors:Header]
 BackgroundAlternate=42,42,55
-BackgroundNormal=11,13,21
+BackgroundNormal=31,31,40
 DecorationFocus=61,174,233
 DecorationHover=61,174,233
 ForegroundActive=61,174,233
@@ -78,7 +78,7 @@ ForegroundVisited=155,89,182
 
 [Colors:Selection]
 BackgroundAlternate=30,87,116
-BackgroundNormal=34,50,73
+BackgroundNormal=31,31,40
 DecorationFocus=34,50,73
 DecorationHover=34,50,73
 ForegroundActive=252,252,252
@@ -138,6 +138,7 @@ History Items[$e]=file:$HOME/Music,file:$HOME/Music,file:$HOME/Documents/work/co
 Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x88\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00
 
 [General]
+ColorScheme=Kanagawa
 ColorSchemeHash=a5e079aa6f3966c4d7ecb35961dc891ece6b99a3
 LastUsedCustomAccentColor=61,174,233
 UseSystemBell=true

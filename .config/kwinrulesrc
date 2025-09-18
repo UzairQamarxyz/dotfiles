@@ -1,9 +1,15 @@
-[69d60ae6-5060-4953-b7c3-f0bd4a2ad9f5]
-Description=No Titlebar
-noborder=true
-noborderrule=2
-wmclasscomplete=true
+[8d0c65aa-7fc1-4c1f-b7ac-85e3dd7b4d97]
+Description=Shadow Fix
+maximizehorizrule=2
+maximizevertrule=2
+types=1
 
 [General]
-count=1
-rules=69d60ae6-5060-4953-b7c3-f0bd4a2ad9f5
+count=2
+rules=befc0da0-a1f9-4c14-9006-0001b7b2a383,8d0c65aa-7fc1-4c1f-b7ac-85e3dd7b4d97
+
+[befc0da0-a1f9-4c14-9006-0001b7b2a383]
+Description=Minimum Geometry Size
+minsizerule=2
+types=1
+wmclassmatch=1
